@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/commons::head"></head>
+<body>
+<header th:replace="fragments/commons::nav"></header>
+<main>
+    <div class="container bg-blur rounded mt-1 mb-4">
+        <h6 class="bg-gray text-dark mb-0 mt-0" th:text="'Username: ' + ${@userSession.username}">Welcome, ${}</h6>
+        <div class="row mt-1 mb-2">
+            <div class="col-6 mt-1 mb-1">
+
+                <div>
+                    <h3 class="mySticky bg-gray text-dark  mb-0 mt-2">Desserts (<span th:text="${desserts.size()}"></span>)</h3>
+                    <th:block >
+                    <div class="bg-dark rounded m-auto" style="height: 31vh; overflow: auto">
+                        <table class="table table-striped table-dark">
+                            <tr th:each="dessert: ${desserts}">
+                                <td class="bg-warning" scope="row" style="width: 5%">
+                                    <img class="mr-2 " src="/img/dessert.png" alt="Dessert" width="35px" height="35px">
+                                </td>
+                                <td th:text="${dessert.name}">{name}</td>
+                                <td th:text="${dessert.ingredients}">{ingredients}</td>
+                                <td>  <form th:method="post" th:action="@{/add-to-favourites/{id}(id=${dessert.getId()})}">
+                                    <button type="submit">
+                                        <img class="mr-2 " src="/img/add-to-favourites.png"
+                                             alt="Cocktail" width="35px" height="35px">
+                                    </button>
+                                </form>
+                                </td>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    </th:block>
+                </div>
+
+                <div>
+                    <h3 class="mySticky bg-gray text-dark  mb-0 mt-2">Cocktails (<span th:text="${cocktails.size()}"></span>)</h3>
+                    <th:block >
+                    <div class="bg-dark rounded m-auto" style="height: 31vh; overflow: auto">
+                        <table class="table table-striped table-dark">
+                            <tr th:each="cocktail: ${cocktails}">
+                                <td class="bg-success" scope="row" style="width: 5%">
+                                    <img class="mr-2 " src="/img/cocktail.png" alt="Cocktail" width="35px"
+                                         height="35px">
+                                </td>
+                                <td th:text="${cocktail.name}">{name}</td>
+                                <td th:text="${cocktail.ingredients}">{ingredients}</td>
+                                <td>
+                                    <form th:method="post" th:action="@{/add-to-favourites/{id}(id=${cocktail.getId()})}">
+                                    <button type="submit">
+                                    <img class="mr-2 " src="/img/add-to-favourites.png"
+                                         alt="Cocktail" width="35px" height="35px">
+                                    </button>
+                                </form>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    </th:block>
+                </div>
+
+            </div>
+
+            <div class="col-6 mt-1 mb-1">
+                <div>
+                    <h3 class="mySticky bg-gray text-dark  mb-0 mt-2">Main Dishes (<span th:text="${mainDishes.size()}"></span>)</h3>
+                    <th:block >
+                    <div class="bg-dark rounded m-auto" style="height: 31vh; overflow: auto">
+                        <table class="table table-striped table-dark">
+                            <tr th:each="main: ${mainDishes}">
+                                <td class="bg-info" scope="row" style="width: 5%">
+                                    <img class="mr-2 " src="/img/main-dish.png" alt="Main-Dish" width="35px" height="35px">
+                                </td>
+                                <td th:text="${main.name}"></td>
+                                <td th:text="${main.ingredients}">{ingredients}</td>
+                                <td>
+                                    <form th:method="post" th:action="@{/add-to-favourites/{id}(id=${main.getId()})}">
+                                        <button type="submit">
+                                            <img class="mr-2 " src="/img/add-to-favourites.png"
+                                                 alt="Cocktail" width="35px" height="35px">
+                                        </button>
+                                    </form>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    </th:block>
+                </div>
+
+                <div>
+                    <h3 class="mySticky bg-gray text-dark  mb-0 mt-2">Favourites (<span th:text="${favoritesData.size()}"></span>)</h3>
+                    <div class="bg-dark rounded m-auto" style="height: 31vh; overflow: auto">
+                        <table class="table table-striped table-dark">
+                            <tr  th:each="favorite: ${favoritesData}">
+                                <td class="bg-primary" scope="row" style="width: 5%">
+                                    <img class="mr-2 " src="/img/star.png" alt="Star" width="35px" height="35px">
+                                </td>
+                                <td th:text="${favorite.getName()}" ></td>
+                                <td th:text="${favorite.getIngredients()}"></td>
+                            </tr>
+                        </table>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+<footer th:replace="fragments/commons::footer"></footer>
+</body>
+</html>
