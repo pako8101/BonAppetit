@@ -19,9 +19,9 @@
                                 <td class="bg-warning" scope="row" style="width: 5%">
                                     <img class="mr-2 " src="/img/dessert.png" alt="Dessert" width="35px" height="35px">
                                 </td>
-                                <td th:text="${dessert.name}">{name}</td>
-                                <td th:text="${dessert.ingredients}">{ingredients}</td>
-                                <td>  <form th:method="post" th:action="@{/add-to-favourites/{id}(id=${dessert.getId()})}">
+                                <td th:text="${dessert.getName()}">{name}</td>
+                                <td th:text="${dessert.getIngredients()}">{ingredients}</td>
+                                <td>  <form th:method="POST" th:action="@{/add-to-favourites/{id}(id = ${dessert.getId()})}">
                                     <button type="submit">
                                         <img class="mr-2 " src="/img/add-to-favourites.png"
                                              alt="Cocktail" width="35px" height="35px">
@@ -73,10 +73,10 @@
                                 <td class="bg-info" scope="row" style="width: 5%">
                                     <img class="mr-2 " src="/img/main-dish.png" alt="Main-Dish" width="35px" height="35px">
                                 </td>
-                                <td th:text="${main.name}"></td>
+                                <td th:text="${main.getName()}"></td>
                                 <td th:text="${main.ingredients}">{ingredients}</td>
                                 <td>
-                                    <form th:method="post" th:action="@{/add-to-favourites/{id}(id=${main.getId()})}">
+                                    <form th:method="POST" th:action="@{/add-to-favourites/{id}(id=${main.getId()})}">
                                         <button type="submit">
                                             <img class="mr-2 " src="/img/add-to-favourites.png"
                                                  alt="Cocktail" width="35px" height="35px">

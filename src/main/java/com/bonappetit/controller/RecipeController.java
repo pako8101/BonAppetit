@@ -62,11 +62,11 @@ public class RecipeController {
         }
 
     }
-    @PostMapping("/add-to-favourites{recipeId}")
+    @PostMapping("/add-to-favourites/{recipeId}")
     public String addToFavourites(@PathVariable long recipeId){
 
         if (!userSession.isLoggedIn()) {
-            return "redirect:/login";
+            return "redirect:/";
         }
 
         recipeService.addToFavorites(userSession.getId(), recipeId);
